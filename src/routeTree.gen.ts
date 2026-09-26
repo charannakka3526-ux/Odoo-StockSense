@@ -15,6 +15,8 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedLedgerRouteImport } from './routes/_authenticated/ledger'
 import { Route as AuthenticatedStockRouteImport } from './routes/_authenticated/stock'
+import { Route as AuthenticatedDeliveriesIndexRouteImport } from './routes/_authenticated/deliveries.index'
+import { Route as AuthenticatedDeliveriesIdRouteImport } from './routes/_authenticated/deliveries.$id'
 import { Route as AuthenticatedReceiptsIndexRouteImport } from './routes/_authenticated/receipts.index'
 import { Route as AuthenticatedReceiptsIdRouteImport } from './routes/_authenticated/receipts.$id'
 
@@ -47,6 +49,18 @@ const AuthenticatedStockRoute = AuthenticatedStockRouteImport.update({
   path: '/stock',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedDeliveriesIndexRoute =
+  AuthenticatedDeliveriesIndexRouteImport.update({
+    id: '/deliveries/',
+    path: '/deliveries/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDeliveriesIdRoute =
+  AuthenticatedDeliveriesIdRouteImport.update({
+    id: '/deliveries/$id',
+    path: '/deliveries/$id',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedReceiptsIndexRoute =
   AuthenticatedReceiptsIndexRouteImport.update({
     id: '/receipts/',
@@ -65,7 +79,9 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/ledger': typeof AuthenticatedLedgerRoute
   '/stock': typeof AuthenticatedStockRoute
+  '/deliveries/$id': typeof AuthenticatedDeliveriesIdRoute
   '/receipts/$id': typeof AuthenticatedReceiptsIdRoute
+  '/deliveries/': typeof AuthenticatedDeliveriesIndexRoute
   '/receipts/': typeof AuthenticatedReceiptsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -74,7 +90,9 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/ledger': typeof AuthenticatedLedgerRoute
   '/stock': typeof AuthenticatedStockRoute
+  '/deliveries/$id': typeof AuthenticatedDeliveriesIdRoute
   '/receipts/$id': typeof AuthenticatedReceiptsIdRoute
+  '/deliveries': typeof AuthenticatedDeliveriesIndexRoute
   '/receipts': typeof AuthenticatedReceiptsIndexRoute
 }
 export interface FileRoutesById {
@@ -85,7 +103,9 @@ export interface FileRoutesById {
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/ledger': typeof AuthenticatedLedgerRoute
   '/_authenticated/stock': typeof AuthenticatedStockRoute
+  '/_authenticated/deliveries/$id': typeof AuthenticatedDeliveriesIdRoute
   '/_authenticated/receipts/$id': typeof AuthenticatedReceiptsIdRoute
+  '/_authenticated/deliveries/': typeof AuthenticatedDeliveriesIndexRoute
   '/_authenticated/receipts/': typeof AuthenticatedReceiptsIndexRoute
 }
 export interface FileRouteTypes {
@@ -96,7 +116,9 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/ledger'
     | '/stock'
+    | '/deliveries/$id'
     | '/receipts/$id'
+    | '/deliveries/'
     | '/receipts/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -105,7 +127,9 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/ledger'
     | '/stock'
+    | '/deliveries/$id'
     | '/receipts/$id'
+    | '/deliveries'
     | '/receipts'
   id:
     | '__root__'
@@ -115,7 +139,9 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard'
     | '/_authenticated/ledger'
     | '/_authenticated/stock'
+    | '/_authenticated/deliveries/$id'
     | '/_authenticated/receipts/$id'
+    | '/_authenticated/deliveries/'
     | '/_authenticated/receipts/'
   fileRoutesById: FileRoutesById
 }
@@ -169,6 +195,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedStockRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/deliveries/': {
+      id: '/_authenticated/deliveries/'
+      path: '/deliveries'
+      fullPath: '/deliveries/'
+      preLoaderRoute: typeof AuthenticatedDeliveriesIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/deliveries/$id': {
+      id: '/_authenticated/deliveries/$id'
+      path: '/deliveries/$id'
+      fullPath: '/deliveries/$id'
+      preLoaderRoute: typeof AuthenticatedDeliveriesIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/receipts/': {
       id: '/_authenticated/receipts/'
       path: '/receipts'
@@ -190,7 +230,9 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedLedgerRoute: typeof AuthenticatedLedgerRoute
   AuthenticatedStockRoute: typeof AuthenticatedStockRoute
+  AuthenticatedDeliveriesIdRoute: typeof AuthenticatedDeliveriesIdRoute
   AuthenticatedReceiptsIdRoute: typeof AuthenticatedReceiptsIdRoute
+  AuthenticatedDeliveriesIndexRoute: typeof AuthenticatedDeliveriesIndexRoute
   AuthenticatedReceiptsIndexRoute: typeof AuthenticatedReceiptsIndexRoute
 }
 
@@ -198,7 +240,9 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedLedgerRoute: AuthenticatedLedgerRoute,
   AuthenticatedStockRoute: AuthenticatedStockRoute,
+  AuthenticatedDeliveriesIdRoute: AuthenticatedDeliveriesIdRoute,
   AuthenticatedReceiptsIdRoute: AuthenticatedReceiptsIdRoute,
+  AuthenticatedDeliveriesIndexRoute: AuthenticatedDeliveriesIndexRoute,
   AuthenticatedReceiptsIndexRoute: AuthenticatedReceiptsIndexRoute,
 }
 
