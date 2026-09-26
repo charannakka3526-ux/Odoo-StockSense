@@ -5,6 +5,20 @@ import { AppShell, Panel } from "@/components/AppShell";
 import { fetchLedger, fetchWarehouses, formatDateTime } from "@/lib/inventory";
 
 export const Route = createFileRoute("/_authenticated/ledger")({
+  head: () => ({
+    meta: [
+      { title: "Move ledger — StockSense" },
+      {
+        name: "description",
+        content: "Append-only history of every stock movement across receipts, deliveries and counts.",
+      },
+      { property: "og:title", content: "Move ledger — StockSense" },
+      {
+        property: "og:description",
+        content: "Every stock movement, permanently recorded and filterable by type and warehouse.",
+      },
+    ],
+  }),
   component: LedgerPage,
 });
 

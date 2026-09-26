@@ -8,6 +8,20 @@ import { supabase } from "@/integrations/supabase/client";
 import { fetchCategories, fetchStock, fetchWarehouses, money } from "@/lib/inventory";
 
 export const Route = createFileRoute("/_authenticated/stock")({
+  head: () => ({
+    meta: [
+      { title: "Stock list — StockSense" },
+      {
+        name: "description",
+        content: "Search every SKU and see on-hand quantity, reorder point and unit cost by location.",
+      },
+      { property: "og:title", content: "Stock list — StockSense" },
+      {
+        property: "og:description",
+        content: "On-hand quantity, reorder point and unit cost for every SKU, location by location.",
+      },
+    ],
+  }),
   component: StockPage,
 });
 

@@ -8,6 +8,20 @@ import { supabase } from "@/integrations/supabase/client";
 import { fetchReceipts, fetchWarehouses, formatDate } from "@/lib/inventory";
 
 export const Route = createFileRoute("/_authenticated/receipts/")({
+  head: () => ({
+    meta: [
+      { title: "Receipts — StockSense" },
+      {
+        name: "description",
+        content: "Incoming supplier deliveries: log expected lines and validate to add stock.",
+      },
+      { property: "og:title", content: "Receipts — StockSense" },
+      {
+        property: "og:description",
+        content: "Track incoming supplier goods and validate them into stock in one step.",
+      },
+    ],
+  }),
   component: ReceiptsPage,
 });
 

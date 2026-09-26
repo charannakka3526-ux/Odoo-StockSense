@@ -13,6 +13,20 @@ import {
 } from "@/lib/inventory";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
+  head: () => ({
+    meta: [
+      { title: "Dashboard — StockSense" },
+      {
+        name: "description",
+        content: "Live stock value, low-stock alerts and every open receipt or delivery order.",
+      },
+      { property: "og:title", content: "Dashboard — StockSense" },
+      {
+        property: "og:description",
+        content: "Live stock value, low-stock alerts and every open warehouse document.",
+      },
+    ],
+  }),
   component: Dashboard,
 });
 

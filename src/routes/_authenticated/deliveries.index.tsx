@@ -8,6 +8,20 @@ import { supabase } from "@/integrations/supabase/client";
 import { fetchDeliveries, fetchWarehouses, formatDate } from "@/lib/inventory";
 
 export const Route = createFileRoute("/_authenticated/deliveries/")({
+  head: () => ({
+    meta: [
+      { title: "Delivery orders — StockSense" },
+      {
+        name: "description",
+        content: "Outgoing orders: pick, pack and validate to take quantities out of stock.",
+      },
+      { property: "og:title", content: "Delivery orders — StockSense" },
+      {
+        property: "og:description",
+        content: "Pick, pack and validate outgoing orders without ever going below zero stock.",
+      },
+    ],
+  }),
   component: DeliveriesPage,
 });
 
